@@ -2,12 +2,21 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Royale Poultry — Fresh Chicken Maroubra Sydney</title>
-    <meta name="description"
-        content="Royale Poultry at Pacific Square Maroubra. Fresh chicken, hot food, friendly service. Better than supermarkets.">
     <style>
+        :root {
+            --red: #cc2200;
+            --red-dark: #a01a00;
+            --red-light: #e03010;
+            --cream: #ffffff;
+            --cream-dark: #f4f4f4;
+            --cream-mid: #e0e0e0;
+            --text: #222222;
+            --muted: #666666;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -16,25 +25,32 @@
 
         body {
             font-family: -apple-system, sans-serif;
-            color: #333;
+            color: var(--text);
+            background: var(--cream);
         }
 
         .header {
-            background: #c8360a;
-            color: white;
-            padding: 16px 20px;
+            background: var(--red-dark);
+            color: #fff;
+            padding: 14px 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
         }
 
         .header h1 {
-            font-size: 22px;
+            font-size: 21px;
+            font-weight: 800;
         }
 
         .header p {
-            font-size: 13px;
-            opacity: 0.85;
+            font-size: 12px;
+            opacity: 0.75;
+            margin-top: 2px;
         }
 
         .header-right {
@@ -42,69 +58,183 @@
             font-size: 13px;
         }
 
+        nav {
+            display: flex;
+            gap: 18px;
+            margin-top: 7px;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        /* HERO SLIDESHOW */
         .hero {
-            background: linear-gradient(135deg, #c8360a, #8b1a00);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
+            position: relative;
+            height: 500px;
+            overflow: hidden;
         }
 
-        .hero h2 {
-            font-size: 36px;
-            margin-bottom: 12px;
+        .hero-slides {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.9s cubic-bezier(.77, 0, .18, 1);
         }
 
-        .hero p {
-            font-size: 18px;
-            opacity: 0.9;
-            margin-bottom: 24px;
+        .hero-slide {
+            min-width: 100%;
+            height: 500px;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .hero-slide-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(100, 15, 0, 0.82) 38%, rgba(0, 0, 0, 0.15));
+        }
+
+        .hero-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 56px;
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            color: #fff;
+            line-height: 1.1;
+            font-weight: 900;
+        }
+
+        .hero-content h2 span {
+            color: #f5d76e;
+        }
+
+        .hero-content p {
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 1.05rem;
+            margin: 14px 0 26px;
+            max-width: 400px;
+            line-height: 1.55;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .hero-btns {
             display: flex;
             gap: 12px;
-            justify-content: center;
             flex-wrap: wrap;
         }
 
+        .hero-dots {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .hero-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.35);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .hero-dot.active {
+            background: #fff;
+            width: 22px;
+            border-radius: 4px;
+        }
+
         .btn {
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 700;
             text-decoration: none;
             cursor: pointer;
             border: none;
+            display: inline-block;
+            transition: all 0.2s;
         }
 
-        .btn-white {
-            background: white;
-            color: #c8360a;
+        .btn-cream {
+            background: #fff;
+            color: var(--red-dark);
+        }
+
+        .btn-cream:hover {
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
         }
 
         .btn-outline {
             background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-white:hover {
-            background: #f0f0f0;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.6);
         }
 
         .btn-outline:hover {
+            border-color: #fff;
             background: rgba(255, 255, 255, 0.1);
         }
 
+        .btn-red {
+            background: var(--red);
+            color: #fff;
+        }
+
+        .btn-red:hover {
+            background: var(--red-dark);
+        }
+
         .info-bar {
-            background: #333;
-            color: white;
-            padding: 12px 20px;
+            background: var(--text);
+            color: #ddd;
+            padding: 10px 20px;
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 32px;
             flex-wrap: wrap;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .info-bar span {
@@ -114,122 +244,166 @@
         }
 
         .section {
-            padding: 50px 20px;
-            max-width: 1000px;
+            padding: 56px 20px;
+            max-width: 1020px;
             margin: 0 auto;
         }
 
-        .section h2 {
-            font-size: 28px;
-            text-align: center;
-            margin-bottom: 8px;
-            color: #c8360a;
+        .alt-section {
+            background: var(--cream-dark);
+            padding: 56px 20px;
         }
 
-        .section-sub {
-            text-align: center;
-            color: #666;
-            margin-bottom: 32px;
-            font-size: 16px;
+        .alt-inner {
+            max-width: 1020px;
+            margin: 0 auto;
         }
 
+        .sec-h {
+            font-size: 26px;
+            text-align: center;
+            color: var(--red-dark);
+            margin-bottom: 6px;
+            font-weight: 800;
+        }
+
+        .sec-sub {
+            text-align: center;
+            color: var(--muted);
+            margin-bottom: 28px;
+            font-size: 14px;
+        }
+
+        .divider {
+            width: 44px;
+            height: 3px;
+            background: var(--red);
+            border-radius: 2px;
+            margin: 8px auto 24px;
+        }
+
+        /* PRODUCTS */
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 18px;
         }
 
         .product-card {
-            background: #fff8f0;
+            background: #fff;
             border-radius: 12px;
-            padding: 24px;
-            text-align: center;
-            border: 1px solid #f0d0b0;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--cream-mid);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .product-card .emoji {
-            font-size: 40px;
-            margin-bottom: 10px;
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.13);
         }
 
-        .product-card h3 {
-            font-size: 16px;
-            margin-bottom: 6px;
+        .product-img {
+            height: 150px;
+            overflow: hidden;
         }
 
-        .product-card p {
-            font-size: 13px;
-            color: #666;
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
         }
 
-        .why {
-            background: #fff8f0;
-            padding: 50px 20px;
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
         }
 
-        .why-inner {
-            max-width: 1000px;
-            margin: 0 auto;
+        .product-body {
+            padding: 14px;
         }
 
-        .why h2 {
-            font-size: 28px;
-            text-align: center;
-            margin-bottom: 8px;
-            color: #c8360a;
+        .product-body h3 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
         }
 
-        .why-sub {
-            text-align: center;
-            color: #666;
-            margin-bottom: 32px;
+        .product-body p {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.45;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .product-price {
+            font-weight: 800;
+            color: var(--red);
+            font-size: 15px;
+        }
+
+        .add-btn {
+            background: var(--red);
+            color: #fff;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .add-btn:hover {
+            background: var(--red-dark);
         }
 
         .why-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            gap: 16px;
         }
 
         .why-card {
-            background: white;
+            background: #fff;
             border-radius: 12px;
             padding: 24px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--cream-mid);
         }
 
         .why-card .icon {
-            font-size: 36px;
+            font-size: 32px;
             margin-bottom: 10px;
         }
 
         .why-card h3 {
-            font-size: 16px;
-            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 5px;
         }
 
         .why-card p {
-            font-size: 13px;
-            color: #666;
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.5;
         }
 
-        .hours {
-            padding: 50px 20px;
-            max-width: 600px;
+        .hours-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 32px;
+            max-width: 520px;
             margin: 0 auto;
-            text-align: center;
-        }
-
-        .hours h2 {
-            font-size: 28px;
-            color: #c8360a;
-            margin-bottom: 8px;
-        }
-
-        .hours-sub {
-            color: #666;
-            margin-bottom: 24px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+            border: 1px solid var(--cream-mid);
         }
 
         .hours-table {
@@ -238,41 +412,37 @@
         }
 
         .hours-table tr {
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        .hours-table tr:last-child {
+            border: none;
         }
 
         .hours-table td {
-            padding: 10px 16px;
-            font-size: 15px;
+            padding: 10px 8px;
+            font-size: 14px;
         }
 
         .hours-table td:last-child {
             text-align: right;
-            font-weight: bold;
-            color: #c8360a;
+            font-weight: 700;
+            color: var(--red);
         }
 
-        .reviews {
-            background: #fff8f0;
-            padding: 50px 20px;
+        .hours-table tr.today {
+            background: #fff5f5;
         }
 
-        .reviews-inner {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .reviews h2 {
-            font-size: 28px;
-            text-align: center;
-            color: #c8360a;
-            margin-bottom: 8px;
-        }
-
-        .reviews-sub {
-            text-align: center;
-            color: #666;
-            margin-bottom: 32px;
+        .today-badge {
+            background: var(--red);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 10px;
+            margin-left: 8px;
+            vertical-align: middle;
         }
 
         .reviews-grid {
@@ -282,49 +452,64 @@
         }
 
         .review-card {
-            background: white;
+            background: #fff;
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--cream-mid);
         }
 
         .stars {
-            color: #f9ab00;
-            font-size: 18px;
+            color: #d4a017;
+            font-size: 16px;
             margin-bottom: 8px;
         }
 
         .review-text {
-            font-size: 14px;
+            font-size: 13px;
             color: #444;
-            line-height: 1.6;
+            line-height: 1.65;
             margin-bottom: 10px;
             font-style: italic;
         }
 
         .reviewer {
-            font-size: 13px;
-            font-weight: bold;
-            color: #333;
+            font-size: 12px;
+            font-weight: 700;
         }
 
-        .contact {
-            padding: 50px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
+        .google-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            background: #fff;
+            border: 1.5px solid var(--cream-mid);
+            border-radius: 10px;
+            padding: 14px 26px;
+            max-width: 320px;
+            margin: 26px auto 0;
+            text-decoration: none;
+            transition: box-shadow 0.2s;
         }
 
-        .contact h2 {
-            font-size: 28px;
-            color: #c8360a;
-            text-align: center;
-            margin-bottom: 8px;
+        .google-cta:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
         }
 
-        .contact-sub {
-            text-align: center;
-            color: #666;
-            margin-bottom: 32px;
+        .google-cta img {
+            width: 24px;
+        }
+
+        .g-score {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .g-label {
+            font-size: 11px;
+            color: var(--muted);
         }
 
         .contact-grid {
@@ -334,28 +519,33 @@
         }
 
         .contact-info {
-            background: #fff8f0;
+            background: #fff;
             border-radius: 12px;
             padding: 24px;
+            border: 1px solid var(--cream-mid);
         }
 
         .contact-info h3 {
             margin-bottom: 16px;
-            font-size: 18px;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--red-dark);
         }
 
         .contact-row {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 10px;
-            margin-bottom: 14px;
-            font-size: 15px;
+            margin-bottom: 13px;
+            font-size: 14px;
+            line-height: 1.45;
         }
 
         .map-container {
             border-radius: 12px;
             overflow: hidden;
-            height: 300px;
+            height: 320px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
         }
 
         .map-container iframe {
@@ -364,43 +554,270 @@
             border: 0;
         }
 
-        .cta {
-            background: #c8360a;
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
+        .order-section {
+            background: var(--red-dark);
+            padding: 56px 20px;
         }
 
-        .cta h2 {
-            font-size: 28px;
-            margin-bottom: 12px;
+        .order-section .sec-h {
+            color: #fff;
         }
 
-        .cta p {
-            font-size: 16px;
-            opacity: 0.9;
-            margin-bottom: 24px;
+        .order-section .sec-sub {
+            color: rgba(255, 255, 255, 0.75);
         }
 
-        .footer {
-            background: #222;
-            color: #aaa;
-            padding: 20px;
-            text-align: center;
+        .order-section .divider {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .order-form {
+            background: #fff;
+            border-radius: 14px;
+            padding: 32px;
+            max-width: 660px;
+            margin: 0 auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group.full {
+            grid-column: 1/-1;
+        }
+
+        label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--red-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 10px 12px;
+            border: 1.5px solid var(--cream-mid);
+            border-radius: 7px;
+            font-size: 14px;
+            font-family: inherit;
+            background: var(--cream-dark);
+            transition: border-color 0.2s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--red);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .cart-panel {
+            background: var(--cream-dark);
+            border: 1.5px solid var(--cream-mid);
+            border-radius: 10px;
+            padding: 16px;
+            margin-top: 20px;
+        }
+
+        .cart-title {
+            font-weight: 700;
+            color: var(--red-dark);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .cart-badge {
+            background: var(--red);
+            color: #fff;
+            border-radius: 20px;
+            padding: 2px 9px;
+            font-size: 11px;
+            margin-left: 6px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 0;
+            border-bottom: 1px solid var(--cream-mid);
             font-size: 13px;
         }
 
-        @media (max-width: 600px) {
-            .hero h2 {
-                font-size: 26px;
+        .cart-item:last-of-type {
+            border: none;
+        }
+
+        .rm-btn {
+            background: none;
+            border: none;
+            color: var(--red);
+            cursor: pointer;
+            font-size: 15px;
+            padding: 0 4px;
+        }
+
+        .cart-total {
+            font-weight: 800;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .cart-empty {
+            text-align: center;
+            color: #bbb;
+            font-style: italic;
+            font-size: 13px;
+            padding: 10px 0;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--red-dark);
+            color: #fff;
+            padding: 14px;
+            border: none;
+            border-radius: 7px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 18px;
+            transition: background 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #500c0c;
+        }
+
+        .cta {
+            background: var(--cream-dark);
+            padding: 52px 20px;
+            text-align: center;
+            border-top: 1px solid var(--cream-mid);
+        }
+
+        .cta h2 {
+            font-size: 26px;
+            color: var(--red-dark);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .cta p {
+            font-size: 15px;
+            color: var(--muted);
+            margin-bottom: 22px;
+        }
+
+        .success-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .success-box {
+            background: #fff;
+            border-radius: 16px;
+            padding: 36px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .success-box .tick {
+            font-size: 3.5rem;
+        }
+
+        .success-box h2 {
+            color: var(--red-dark);
+            margin: 10px 0 6px;
+            font-weight: 800;
+        }
+
+        .success-box p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .order-details {
+            background: var(--cream-dark);
+            border-radius: 10px;
+            padding: 14px;
+            margin: 14px 0;
+            font-size: 13px;
+            text-align: left;
+            line-height: 1.9;
+        }
+
+        .close-btn {
+            background: var(--red-dark);
+            color: #fff;
+            border: none;
+            padding: 11px 30px;
+            border-radius: 7px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        footer {
+            background: var(--text);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 18px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        footer a {
+            color: #f5d76e;
+            text-decoration: none;
+        }
+
+        @media(max-width:640px) {
+            .hero-content {
+                padding: 0 24px;
             }
 
-            .contact-grid {
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+
+            .contact-grid,
+            .form-grid {
                 grid-template-columns: 1fr;
             }
 
             .info-bar {
-                gap: 16px;
+                gap: 12px;
+            }
+
+            nav {
+                display: none;
             }
         }
     </style>
@@ -412,78 +829,79 @@
         <div>
             <h1>🍗 Royale Poultry</h1>
             <p>Pacific Square, Maroubra</p>
+            <nav>
+                <a href="#products">Menu</a>
+                <a href="#hours">Hours</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#findus">Find Us</a>
+                <a href="#order">Order</a>
+            </nav>
         </div>
         <div class="header-right">
             <div>📞 (02) 8964 4879</div>
-            <div>Open Today 7:30am – 5:30pm</div>
+            <div style="margin-top:4px;">Open Today 7:30am – 5:30pm</div>
         </div>
     </div>
 
+    <!-- HERO -->
     <div class="hero">
-        <h2>Fresh Chicken Every Day</h2>
-        <p>Maroubra's local poultry specialists — better quality than supermarkets</p>
-        <div class="hero-btns">
-            <a href="https://maps.google.com/?cid=12270329640682949472" class="btn btn-white" target="_blank">📍 Get
-                Directions</a>
-            <a href="tel:0289644879" class="btn btn-outline">📞 Call Us</a>
-            <a href="https://maps.google.com/?cid=12270329640682949472" class="btn btn-outline" target="_blank">⭐ Leave
-                a Review</a>
+        <div class="hero-slides" id="hero-slides">
+            <div class="hero-slide"><img id="slide-img-0" src="" alt="Roast Chicken Pieces" />
+                <div class="hero-slide-overlay"></div>
+            </div>
+            <div class="hero-slide"><img id="slide-img-1" src="" alt="Crispy Fried Chicken" />
+                <div class="hero-slide-overlay"></div>
+            </div>
+            <div class="hero-slide"><img id="slide-img-2" src="" alt="Chicken Wings" />
+                <div class="hero-slide-overlay"></div>
+            </div>
+            <div class="hero-slide"><img id="slide-img-3" src="" alt="Rolled Chicken" />
+                <div class="hero-slide-overlay"></div>
+            </div>
+            <div class="hero-slide"><img id="slide-img-4" src="" alt="Spit Roast Chicken" />
+                <div class="hero-slide-overlay"></div>
+            </div>
         </div>
+        <div class="hero-content">
+            <div class="hero-tag">📍 Pacific Square, Maroubra</div>
+            <h2>Fresh Chicken<br /><span>Every Day</span></h2>
+            <p>Maroubra's local poultry specialists — quality you can taste in every bite.</p>
+            <div class="hero-btns">
+                <a href="https://maps.google.com/?cid=12270329640682949472" class="btn btn-cream" target="_blank">📍 Get
+                    Directions</a>
+                <a href="tel:0289644879" class="btn btn-outline">📞 Call Us</a>
+                <a href="#order" class="btn btn-outline">🛒 Pre-Order</a>
+            </div>
+        </div>
+        <div class="hero-dots" id="hero-dots"></div>
     </div>
 
     <div class="info-bar">
         <span>📍 Pacific Square, 22/737 Anzac Parade, Maroubra NSW 2035</span>
         <span>📞 (02) 8964 4879</span>
         <span>⭐ 4.2 Google Rating</span>
-        <span>🕐 Mon–Sat 7:30am–5:30pm</span>
+        <span>🕐 Mon–Sat 7:30am–5:30pm | Sun 8:00am–4:30pm</span>
     </div>
 
-    <div class="section">
-        <h2>Our Products</h2>
-        <p class="section-sub">Fresh chicken cuts and hot food — ready for you every day</p>
-        <div class="products">
-            <div class="product-card">
-                <div class="emoji">🐔</div>
-                <h3>Whole Chicken</h3>
-                <p>Fresh whole chickens — perfect for roasting</p>
-            </div>
-            <div class="product-card">
-                <div class="emoji">🍗</div>
-                <h3>Breast Fillets</h3>
-                <p>Lean, fresh breast fillets for every meal</p>
-            </div>
-            <div class="product-card">
-                <div class="emoji">🍖</div>
-                <h3>Thigh Fillets</h3>
-                <p>Juicy thigh fillets — great for grilling</p>
-            </div>
-            <div class="product-card">
-                <div class="emoji">🔥</div>
-                <h3>Wings & Drumsticks</h3>
-                <p>Perfect for BBQs and family dinners</p>
-            </div>
-            <div class="product-card">
-                <div class="emoji">🌿</div>
-                <h3>Marinated Cuts</h3>
-                <p>Ready to cook marinated chicken varieties</p>
-            </div>
-            <div class="product-card">
-                <div class="emoji">🍽️</div>
-                <h3>Hot Food</h3>
-                <p>Roast chicken, fried pieces and chips — ready now</p>
-            </div>
-        </div>
+    <!-- PRODUCTS -->
+    <div id="products" class="section">
+        <div class="sec-h">Our Menu</div>
+        <div class="divider"></div>
+        <p class="sec-sub">Fresh chicken cuts and hot food — ready for you every day</p>
+        <div class="products" id="products-grid"></div>
     </div>
 
-    <div class="why">
-        <div class="why-inner">
-            <h2>Why Choose Royale Poultry?</h2>
-            <p class="why-sub">We're not a supermarket — and that's exactly the point</p>
+    <!-- WHY -->
+    <div class="alt-section">
+        <div class="alt-inner">
+            <div class="sec-h">Why Choose Royale Poultry?</div>
+            <div class="divider"></div>
+            <p class="sec-sub">Your local chicken specialists — freshness and quality in every visit</p>
             <div class="why-grid">
                 <div class="why-card">
                     <div class="icon">✨</div>
                     <h3>Fresh Daily</h3>
-                    <p>Fresh chicken in every single day — never frozen, always quality</p>
+                    <p>Fresh chicken every single day — never frozen, always quality</p>
                 </div>
                 <div class="why-card">
                     <div class="icon">😊</div>
@@ -492,8 +910,8 @@
                 </div>
                 <div class="why-card">
                     <div class="icon">🏆</div>
-                    <h3>Better Quality</h3>
-                    <p>Premium cuts that supermarkets simply can't match</p>
+                    <h3>Premium Quality</h3>
+                    <p>Hand-selected cuts that deliver on flavour every time</p>
                 </div>
                 <div class="why-card">
                     <div class="icon">📍</div>
@@ -504,83 +922,98 @@
         </div>
     </div>
 
-    <div class="hours">
-        <h2>Opening Hours</h2>
-        <p class="hours-sub">Come visit us at Pacific Square, Maroubra</p>
-        <table class="hours-table">
-            <tr>
-                <td>Monday</td>
-                <td>7:30am – 5:30pm</td>
-            </tr>
-            <tr>
-                <td>Tuesday</td>
-                <td>7:30am – 5:30pm</td>
-            </tr>
-            <tr>
-                <td>Wednesday</td>
-                <td>7:30am – 5:30pm</td>
-            </tr>
-            <tr>
-                <td>Thursday</td>
-                <td>7:30am – 5:30pm</td>
-            </tr>
-            <tr>
-                <td>Friday</td>
-                <td>7:30am – 5:30pm</td>
-            </tr>
-            <tr>
-                <td>Saturday</td>
-                <td>7:30am – 5:30pm</td>
-            </tr>
-            <tr>
-                <td>Sunday</td>
-                <td>8:00am – 4:30pm</td>
-            </tr>
-        </table>
+    <!-- HOURS -->
+    <div id="hours" class="section">
+        <div class="sec-h">Opening Hours</div>
+        <div class="divider"></div>
+        <p class="sec-sub">Come visit us at Pacific Square, Maroubra</p>
+        <div class="hours-card">
+            <table class="hours-table">
+                <tr data-day="1">
+                    <td>Monday</td>
+                    <td>7:30am – 5:30pm</td>
+                </tr>
+                <tr data-day="2">
+                    <td>Tuesday</td>
+                    <td>7:30am – 5:30pm</td>
+                </tr>
+                <tr data-day="3">
+                    <td>Wednesday</td>
+                    <td>7:30am – 5:30pm</td>
+                </tr>
+                <tr data-day="4">
+                    <td>Thursday</td>
+                    <td>7:30am – 5:30pm</td>
+                </tr>
+                <tr data-day="5">
+                    <td>Friday</td>
+                    <td>7:30am – 5:30pm</td>
+                </tr>
+                <tr data-day="6">
+                    <td>Saturday</td>
+                    <td>7:30am – 5:30pm</td>
+                </tr>
+                <tr data-day="0">
+                    <td>Sunday</td>
+                    <td>8:00am – 4:30pm</td>
+                </tr>
+            </table>
+        </div>
     </div>
 
-    <div class="reviews">
-        <div class="reviews-inner">
-            <h2>What Our Customers Say</h2>
-            <p class="reviews-sub">Maroubra's favourite chicken shop</p>
+    <!-- REVIEWS -->
+    <div id="reviews" class="alt-section">
+        <div class="alt-inner">
+            <div class="sec-h">What Our Customers Say</div>
+            <div class="divider"></div>
+            <p class="sec-sub">Maroubra's favourite chicken shop</p>
             <div class="reviews-grid">
                 <div class="review-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div class="stars">★★★★★</div>
                     <p class="review-text">"Best chicken I've ever had from Royale Poultry!! The staff there is so nice
                         and professional! 5 stars from me."</p>
                     <div class="reviewer">— Google Review</div>
                 </div>
                 <div class="review-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div class="stars">★★★★★</div>
                     <p class="review-text">"Best chicken ever! Have been buying lunch here over the last few years. The
                         quality has always been great and the price very competitive."</p>
                     <div class="reviewer">— Google Review</div>
                 </div>
                 <div class="review-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div class="stars">★★★★★</div>
                     <p class="review-text">"The staff and owner are always so friendly, would recommend. Great quality
                         fresh chicken every time."</p>
                     <div class="reviewer">— Google Review</div>
                 </div>
             </div>
+            <a href="https://maps.google.com/?cid=12270329640682949472" target="_blank" class="google-cta">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/480px-Google_%22G%22_logo.svg.png"
+                    alt="Google" />
+                <div>
+                    <div class="g-score">⭐ 4.2 / 5</div>
+                    <div class="g-label">See all reviews on Google</div>
+                </div>
+            </a>
         </div>
     </div>
 
-    <div class="contact">
-        <h2>Find Us</h2>
-        <p class="contact-sub">We're inside Pacific Square shopping centre, Maroubra</p>
+    <!-- FIND US -->
+    <div id="findus" class="section">
+        <div class="sec-h">Find Us</div>
+        <div class="divider"></div>
+        <p class="sec-sub">We're inside Pacific Square shopping centre, Maroubra</p>
         <div class="contact-grid">
             <div class="contact-info">
                 <h3>Contact & Location</h3>
                 <div class="contact-row">📍 Pacific Square, 22/737 Anzac Parade, Maroubra NSW 2035</div>
-                <div class="contact-row">📞 <a href="tel:0289644879">(02) 8964 4879</a></div>
+                <div class="contact-row">📞 <a href="tel:0289644879" style="color:var(--red);font-weight:600;">(02) 8964
+                        4879</a></div>
                 <div class="contact-row">🕐 Mon–Sat: 7:30am – 5:30pm</div>
                 <div class="contact-row">🕐 Sunday: 8:00am – 4:30pm</div>
-                <div class="contact-row">
-                    <a href="https://maps.google.com/?cid=12270329640682949472" target="_blank"
-                        style="background:#c8360a;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:bold;display:inline-block;margin-top:8px">📍
-                        Get Directions</a>
-                </div>
+                <div class="contact-row">🅿️ Free parking at Pacific Square</div>
+                <a href="https://maps.google.com/?cid=12270329640682949472" target="_blank" class="btn btn-red"
+                    style="margin-top:10px;">📍 Get Directions</a>
             </div>
             <div class="map-container">
                 <iframe
@@ -590,17 +1023,229 @@
         </div>
     </div>
 
+    <!-- ORDER -->
+    <div id="order" class="order-section">
+        <div class="sec-h">Pre-Order for Pickup</div>
+        <div class="divider"></div>
+        <p class="sec-sub">Order ahead — skip the queue, pay in store!</p>
+        <div class="order-form">
+            <div class="form-grid">
+                <div class="form-group"><label>Your Name *</label><input type="text" id="cust-name"
+                        placeholder="e.g. John Smith" /></div>
+                <div class="form-group"><label>Phone Number *</label><input type="tel" id="cust-phone"
+                        placeholder="e.g. 04XX XXX XXX" /></div>
+                <div class="form-group"><label>Pickup Time *</label><input type="time" id="pickup-time" /></div>
+                <div class="form-group"><label>Party Size</label>
+                    <select id="party-size">
+                        <option>1–2 people</option>
+                        <option>3–4 people</option>
+                        <option>5–6 people</option>
+                        <option>Large group (7+)</option>
+                    </select>
+                </div>
+                <div class="form-group full"><label>Special Instructions / Allergies</label><textarea id="notes"
+                        placeholder="e.g. extra crispy skin, no garlic, nut allergy..."></textarea></div>
+            </div>
+            <div class="cart-panel">
+                <div class="cart-title">
+                    <span>🛒 Your Order <span class="cart-badge" id="cart-count">0</span></span>
+                    <span style="font-size:11px;color:#bbb;font-weight:400;">Add items from menu above ↑</span>
+                </div>
+                <div id="cart-items">
+                    <div class="cart-empty">No items yet — scroll up to add from the menu!</div>
+                </div>
+                <div class="cart-total" id="cart-total"></div>
+            </div>
+            <button class="submit-btn" onclick="placeOrder()">🍗 Place Order — Pay In Store</button>
+        </div>
+    </div>
+
     <div class="cta">
         <h2>Love Our Chicken?</h2>
         <p>Leave us a Google review — it means the world to a local business like ours!</p>
-        <a href="https://maps.google.com/?cid=12270329640682949472" class="btn btn-white" target="_blank">⭐ Leave a
-            Review on Google</a>
+        <a href="https://maps.google.com/?cid=12270329640682949472" class="btn btn-red" target="_blank">⭐ Leave a Review
+            on Google</a>
     </div>
 
-    <div class="footer">
-        <p>© 2026 Royale Poultry — Pacific Square, 22/737 Anzac Parade, Maroubra NSW 2035 | (02) 8964 4879</p>
+    <footer>
+        <p>© 2026 Royale Poultry — Pacific Square, 22/737 Anzac Parade, Maroubra NSW 2035 | (02) 8964 4879 | <a
+                href="https://maps.google.com/?cid=12270329640682949472" target="_blank">Google Maps</a></p>
+    </footer>
+
+    <div class="success-overlay" id="success-overlay">
+        <div class="success-box">
+            <div class="tick">✅</div>
+            <h2>Order Received!</h2>
+            <p>We'll have it ready for your pickup time.</p>
+            <div class="order-details" id="order-id-display"></div>
+            <p style="font-size:12px;color:#bbb;margin-top:6px;">Payment is in store. See you soon! 🍗</p>
+            <button class="close-btn" onclick="closeSuccess()">Done</button>
+        </div>
     </div>
 
+    <script>
+        // ── Load uploaded images via fetch from the page's own img tags ──
+        // We receive the images as base64 by reading the uploaded files
+        // embedded by the Claude artifact system into window.uploadedImages
+        const slideImages = [
+            "img1", // roast chicken pieces
+            "img2", // crispy fried chicken
+            "img3", // saucy wings
+            "img4", // rolled chicken
+            "img6", // spit roast
+        ];
+
+        const productImages = [
+            "img6", // spit roast → Whole Chicken
+            "img9", // whole roast → Whole Roast
+            "img1", // pieces → Roast Pieces
+            "img2", // fried → Fried Chicken
+            "img3", // wings → Wings
+            "img4", // rolled → Rolled Chicken
+            "img7", // stir fry → Cooked Dishes
+            "img5", // fried rice → Fried Rice
+            "img8", // potatoes → Roast Potatoes
+            "img10",// quarter chicken
+        ];
+
+        // Since artifacts can't load uploaded files directly as src URLs,
+        // we use the images passed via window.IMGS injected below
+        const IMGS = {
+            img1: "chicken_images_website/preview (1).webp",
+            img2: "chicken_images_website/preview (2).webp",
+            img3: "chicken_images_website/preview (3).webp",
+            img4: "chicken_images_website/preview (4).webp",
+            img5: "chicken_images_website/preview (5).webp",
+            img6: "chicken_images_website/preview (6).webp",
+            img7: "chicken_images_website/preview (7).webp",
+            img8: "chicken_images_website/preview (8).webp",
+            img9: "chicken_images_website/preview (9).webp",
+            img10: "chicken_images_website/preview.webp",
+        };
+
+        function setSlideImages() {
+            const keys = ['img1', 'img2', 'img3', 'img4', 'img6'];
+            keys.forEach((k, i) => {
+                const el = document.getElementById('slide-img-' + i);
+                if (IMGS[k]) el.src = IMGS[k];
+            });
+        }
+
+        // Products data with image keys
+        const products = [
+            { name: "Whole Roast Chicken", desc: "Golden spit-roasted whole chicken — a family favourite", imgKey: "img9", price: 22.90 },
+            { name: "Quarter Chicken", desc: "Juicy roast quarter — perfect for lunch", imgKey: "img10", price: 10.90 },
+            { name: "Roast Chicken Pieces", desc: "Freshly roasted chicken pieces, crispy skin", imgKey: "img1", price: 14.90 },
+            { name: "Fried Chicken", desc: "Crispy golden fried chicken pieces", imgKey: "img2", price: 14.90 },
+            { name: "Chicken Wings", desc: "Saucy, sticky wings — perfect snack or meal", imgKey: "img3", price: 12.90 },
+            { name: "Rolled Chicken", desc: "Herb-stuffed rolled chicken, roasted to perfection", imgKey: "img4", price: 16.90 },
+            { name: "Stir Fry Dishes", desc: "Flavourful chicken stir fries with fresh vegetables", imgKey: "img7", price: 13.90 },
+            { name: "Fried Rice", desc: "Chicken fried rice with mixed vegetables", imgKey: "img5", price: 8.90 },
+            { name: "Roast Potatoes", desc: "Golden crispy roast potatoes — the perfect side", imgKey: "img8", price: 5.90 },
+            { name: "Spit Roast Chicken", desc: "Whole chickens slow-roasted on the spit all day", imgKey: "img6", price: 24.90 },
+        ];
+
+        let cart = [];
+
+        function buildProducts() {
+            const pg = document.getElementById('products-grid');
+            products.forEach((p, i) => {
+                const imgSrc = IMGS[p.imgKey] || '';
+                const imgEl = imgSrc
+                    ? `<img src="${imgSrc}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;"/>`
+                    : `<div style="width:100%;height:100%;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:36px;">🍗</div>`;
+                pg.innerHTML += `<div class="product-card">
+      <div class="product-img">${imgEl}</div>
+      <div class="product-body">
+        <h3>${p.name}</h3><p>${p.desc}</p>
+        <div class="product-footer">
+          <span class="product-price">$${p.price.toFixed(2)}</span>
+          <button class="add-btn" onclick="addToCart(${i})">+ Add</button>
+        </div>
+      </div>
+    </div>`;
+            });
+        }
+
+        // Hero slideshow
+        function buildSlideshow() {
+            const slides = document.getElementById('hero-slides');
+            const dotsEl = document.getElementById('hero-dots');
+            const total = slides.children.length;
+            let cur = 0;
+            for (let i = 0; i < total; i++) {
+                const d = document.createElement('div');
+                d.className = 'hero-dot' + (i === 0 ? ' active' : '');
+                d.onclick = () => goTo(i);
+                dotsEl.appendChild(d);
+            }
+            function goTo(n) {
+                cur = n;
+                slides.style.transform = `translateX(-${cur * 100}%)`;
+                document.querySelectorAll('.hero-dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+            }
+            setInterval(() => goTo((cur + 1) % total), 4000);
+        }
+
+        // Today highlight
+        const today = new Date().getDay();
+        document.querySelectorAll('.hours-table tr').forEach(r => {
+            if (parseInt(r.dataset.day) === today) {
+                r.classList.add('today');
+                r.cells[0].innerHTML += `<span class="today-badge">TODAY</span>`;
+            }
+        });
+
+        function addToCart(i) { cart.push({ ...products[i] }); updateCart(); }
+        function removeFromCart(i) { cart.splice(i, 1); updateCart(); }
+        function updateCart() {
+            const tot = cart.reduce((s, i) => s + i.price, 0);
+            document.getElementById('cart-count').textContent = cart.length;
+            const ci = document.getElementById('cart-items');
+            if (!cart.length) { ci.innerHTML = '<div class="cart-empty">No items yet — scroll up to add from the menu!</div>'; document.getElementById('cart-total').textContent = ''; return; }
+            ci.innerHTML = cart.map((item, idx) => `
+    <div class="cart-item">
+      <span>${item.name}</span>
+      <span style="display:flex;align-items:center;gap:8px;">$${item.price.toFixed(2)}<button class="rm-btn" onclick="removeFromCart(${idx})">✕</button></span>
+    </div>`).join('');
+            document.getElementById('cart-total').innerHTML = `Total: <strong>$${tot.toFixed(2)}</strong>`;
+        }
+        function placeOrder() {
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const time = document.getElementById('pickup-time').value;
+            const notes = document.getElementById('notes').value.trim();
+            const party = document.getElementById('party-size').value;
+            if (!name || !phone || !time) { alert('Please fill in your name, phone and pickup time!'); return; }
+            if (!cart.length) { alert('Please add at least one item to your order!'); return; }
+            const orderId = 'RP' + Date.now().toString().slice(-6);
+            const tot = cart.reduce((s, i) => s + i.price, 0);
+            document.getElementById('order-id-display').innerHTML =
+                `<strong>Order #${orderId}</strong><br/>👤 ${name} | 📞 ${phone}<br/>⏰ Pickup: ${time} | 👥 ${party}<br/>🍗 ${cart.map(i => i.name).join(', ')}<br/><strong>💰 Total: $${tot.toFixed(2)} — Pay in store</strong>${notes ? `<br/>📝 ${notes}` : ''}`;
+            document.getElementById('success-overlay').style.display = 'flex';
+            cart = []; updateCart();
+            ['cust-name', 'cust-phone', 'pickup-time', 'notes'].forEach(id => document.getElementById(id).value = '');
+        }
+        function closeSuccess() { document.getElementById('success-overlay').style.display = 'none'; }
+
+        // ── Convert uploaded images to base64 and inject ──
+        async function loadUploadedImages() {
+            // Images are passed as File objects via window.uploadedFiles if available
+            // Otherwise fall back to reading from img elements Claude injected
+            const imgElements = document.querySelectorAll('img[data-upload]');
+            imgElements.forEach(el => {
+                const key = el.dataset.upload;
+                IMGS[key] = el.src;
+            });
+            setSlideImages();
+            buildProducts();
+            buildSlideshow();
+        }
+
+        loadUploadedImages();
+    </script>
+
+    <!-- end -->
 </body>
 
 </html>
