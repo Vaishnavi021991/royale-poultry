@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royale Poultry — Weekly Content</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, sans-serif;
+            background: #fff8f0;
+        }
+
+        .header {
+            background: #c8360a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 22px;
+        }
+
+        .header p {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 16px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        .card h2 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        input[type=text] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            margin-bottom: 10px;
+        }
+
+        input[type=text]:focus {
+            border-color: #c8360a;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .chip {
+            padding: 6px 14px;
+            background: #fff3e0;
+            border: 1px solid #c8360a;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #c8360a;
+        }
+
+        .chip:hover {
+            background: #c8360a;
+            color: white;
+        }
+
+        .btn-generate {
+            width: 100%;
+            padding: 14px;
+            background: #c8360a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-generate:hover {
+            background: #a82d08;
+        }
+
+        .btn-generate:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .spinner-wrap {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f0f0f0;
+            border-top: 4px solid #c8360a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .content-wrap {
+            display: none;
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .tag {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: white;
+        }
+
+        .tag-google {
+            background: #4285F4;
+        }
+
+        .tag-fb {
+            background: #1877F2;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+            font-family: inherit;
+            resize: vertical;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #c8360a;
+        }
+
+        .char-count {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .char-count.over {
+            color: #c8360a;
+            font-weight: bold;
+        }
+
+        .option-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .tab {
+            padding: 6px 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            background: white;
+        }
+
+        .tab.active {
+            background: #1877F2;
+            color: white;
+            border-color: #1877F2;
+        }
+
+        .copy-btn {
+            margin-top: 8px;
+            padding: 7px 14px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .copy-btn:hover {
+            background: #ddd;
+        }
+
+        .summary-box {
+            background: #fff3e0;
+            border-left: 4px solid #c8360a;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .approve-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        .approve-card h2 {
+            margin-bottom: 8px;
+        }
+
+        .approve-card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .btn-approve {
+            width: 100%;
+            padding: 14px;
+            background: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-approve:hover {
+            background: #1b5e20;
+        }
+
+        .btn-approve:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .result {
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-size: 14px;
+            display: none;
+            line-height: 1.8;
+        }
+
+        .result.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .result.error {
+            background: #ffebee;
+            color: #c62828;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>🍗 Royale Poultry — Weekly Content</h1>
+        <p>Generate, review and approve your weekly posts</p>
+    </div>
+
+    <div class="container">
+
+        <!-- Input -->
+        <div class="card">
+            <h2>📝 What's the focus this week?</h2>
+            <input type="text" id="focus" placeholder="e.g. fresh wings, weekend BBQ, winter roast special..." />
+            <div class="chips">
+                <span class="chip" onclick="setFocus('Weekend BBQ special')">🔥 Weekend BBQ</span>
+                <span class="chip" onclick="setFocus('Fresh whole chickens just in')">🐔 Fresh stock in</span>
+                <span class="chip" onclick="setFocus('Hot lunch specials')">🍽️ Lunch specials</span>
+                <span class="chip" onclick="setFocus('Marinated chicken deals')">🌿 Marinated deals</span>
+                <span class="chip" onclick="setFocus('Winter comfort food roast chicken')">❄️ Winter roast</span>
+                <span class="chip" onclick="setFocus('Fresh wings and drumsticks')">🍗 Wings & drums</span>
+            </div>
+            <button class="btn-generate" id="gen-btn" onclick="generate()">✨ Generate This Week's Content</button>
+        </div>
+
+        <!-- Loading -->
+        <div class="spinner-wrap" id="spinner">
+            <div class="spinner"></div>
+            <p>Generating your weekly content...</p>
+        </div>
+
+        <!-- Content -->
+        <div class="content-wrap" id="content-wrap">
+
+            <!-- Week Summary -->
+            <div class="summary-box" id="summary-box"></div>
+
+            <!-- Google Business Post -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-title">📍 Google Business Post</span>
+                    <span class="tag tag-google">Auto posts on approve</span>
+                </div>
+                <textarea id="google_post" rows="3" oninput="updateCharCount()"></textarea>
+                <div class="char-count" id="char-count">0 / 300 characters</div>
+                <button class="copy-btn" onclick="copyText('google_post')">📋 Copy</button>
+            </div>
+
+            <!-- Facebook Post -->
+            <div class="section">
+                <div class="section-header">
+                    <span class="section-title">👥 Facebook Post</span>
+                    <span class="tag tag-fb">Auto posts on approve</span>
+                </div>
+                <div class="option-tabs">
+                    <button class="tab active" onclick="switchFB(1, this)">Option 1</button>
+                    <button class="tab" onclick="switchFB(2, this)">Option 2</button>
+                </div>
+                <textarea id="facebook_post" rows="6"></textarea>
+                <button class="copy-btn" onclick="copyText('facebook_post')">📋 Copy</button>
+            </div>
+
+            <!-- Approve -->
+            <div class="approve-card">
+                <h2>✅ Happy with the content?</h2>
+                <p>Edit anything above before approving. Once approved the Google Business post will go live
+                    automatically. Facebook auto posting coming soon.</p>
+                <button class="btn-approve" id="approve-btn" onclick="approve()">
+                    🚀 Approve & Post
+                </button>
+                <div class="result" id="result"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let fb1 = '', fb2 = '';
+
+        function setFocus(text) {
+            document.getElementById('focus').value = text;
+        }
+
+        async function generate() {
+            const focus = document.getElementById('focus').value.trim();
+            const btn = document.getElementById('gen-btn');
+
+            btn.disabled = true;
+            btn.textContent = '⏳ Generating...';
+            document.getElementById('spinner').style.display = 'block';
+            document.getElementById('content-wrap').style.display = 'none';
+            document.getElementById('result').style.display = 'none';
+
+            try {
+                const res = await fetch('http://127.0.0.1:8000/generate-weekly', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ focus })
+                });
+                const data = await res.json();
+
+                if (!data.success) {
+                    alert('Generation failed: ' + data.error);
+                    return;
+                }
+
+                const c = data.content;
+
+                // Google post
+                document.getElementById('google_post').value = c.google_post.content;
+                updateCharCount();
+
+                // Facebook posts
+                fb1 = c.facebook_post.option_1;
+                fb2 = c.facebook_post.option_2;
+                document.getElementById('facebook_post').value = fb1;
+
+                // Reset tabs
+                document.querySelectorAll('.tab').forEach((t, i) => {
+                    t.className = 'tab' + (i === 0 ? ' active' : '');
+                });
+
+                // Summary
+                document.getElementById('summary-box').textContent = '💡 ' + c.week_summary;
+
+                document.getElementById('content-wrap').style.display = 'block';
+                document.getElementById('content-wrap').scrollIntoView({ behavior: 'smooth' });
+
+            } catch (e) {
+                alert('⚠️ Could not reach the server. Make sure uvicorn is running.');
+            }
+
+            document.getElementById('spinner').style.display = 'none';
+            btn.disabled = false;
+            btn.textContent = '✨ Generate This Week\'s Content';
+        }
+
+        function switchFB(num, el) {
+            document.getElementById('facebook_post').value = num === 1 ? fb1 : fb2;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function updateCharCount() {
+            const len = document.getElementById('google_post').value.length;
+            const el = document.getElementById('char-count');
+            el.textContent = `${len} / 300 characters`;
+            el.className = 'char-count' + (len > 300 ? ' over' : '');
+        }
+
+        async function approve() {
+            const btn = document.getElementById('approve-btn');
+            btn.disabled = true;
+            btn.textContent = '⏳ Posting...';
+
+            try {
+                const res = await fetch('http://127.0.0.1:8000/approve-and-post', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        google_post: document.getElementById('google_post').value,
+                        facebook_post: document.getElementById('facebook_post').value
+                    })
+                });
+                const data = await res.json();
+
+                const result = document.getElementById('result');
+                result.style.display = 'block';
+                result.className = 'result success';
+                result.innerHTML = `
+        ${data.google_post}<br>
+        ${data.facebook_post}<br>
+        ${data.saved}
+      `;
+            } catch (e) {
+                const result = document.getElementById('result');
+                result.style.display = 'block';
+                result.className = 'result error';
+                result.textContent = '❌ Something went wrong. Check the server is running.';
+            }
+
+            btn.disabled = false;
+            btn.textContent = '🚀 Approve & Post';
+        }
+
+        function copyText(id) {
+            navigator.clipboard.writeText(document.getElementById(id).value);
+            event.target.textContent = '✅ Copied!';
+            setTimeout(() => event.target.textContent = '📋 Copy', 2000);
+        }
+    </script>
+</body>
+
+</html>
