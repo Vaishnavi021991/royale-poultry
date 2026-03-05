@@ -846,19 +846,24 @@
     <!-- HERO -->
     <div class="hero">
         <div class="hero-slides" id="hero-slides">
-            <div class="hero-slide"><img id="slide-img-0" src="" alt="Roast Chicken Pieces" />
+            <div class="hero-slide"><img id="slide-img-0" src="chicken_images_website/BBQ_Chicken.png"
+                    alt="BBQ Chicken" />
                 <div class="hero-slide-overlay"></div>
             </div>
-            <div class="hero-slide"><img id="slide-img-1" src="" alt="Crispy Fried Chicken" />
+            <div class="hero-slide"><img id="slide-img-1" src="chicken_images_website/Crumbed Pieces.png"
+                    alt="Crumbed Pieces" />
                 <div class="hero-slide-overlay"></div>
             </div>
-            <div class="hero-slide"><img id="slide-img-2" src="" alt="Chicken Wings" />
+            <div class="hero-slide"><img id="slide-img-2" src="chicken_images_website/Marinated Maryland Tandoori.png"
+                    alt="Marinated Maryland" />
                 <div class="hero-slide-overlay"></div>
             </div>
-            <div class="hero-slide"><img id="slide-img-3" src="" alt="Rolled Chicken" />
+            <div class="hero-slide"><img id="slide-img-3" src="chicken_images_website/Spare Ribs Sweet Chilli.png"
+                    alt="Spare Ribs Sweet Chilli" />
                 <div class="hero-slide-overlay"></div>
             </div>
-            <div class="hero-slide"><img id="slide-img-4" src="" alt="Spit Roast Chicken" />
+            <div class="hero-slide"><img id="slide-img-4" src="chicken_images_website/Portugese_Chicken.png"
+                    alt="Portuguese Chicken" />
                 <div class="hero-slide-overlay"></div>
             </div>
         </div>
@@ -1182,7 +1187,7 @@
                 const imgSrc = p.imgKey && IMGS[p.imgKey] ? IMGS[p.imgKey] : null;
                 const imgEl = imgSrc
                     ? `<img src="${imgSrc}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;"/>`
-                    : `<div style="width:100%;height:100%;background:#f4f4f4;display:flex;align-items:center;justify-content:center;font-size:48px;">${p.name.toLowerCase().includes('water') ? '💧' : '🥤'}</div>`;
+                    : `<div style="width:100%;height:100%;background:#f4f4f4;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:48px;">${p.imgKey === null ? (p.name.toLowerCase().includes('water') ? '💧' : '🥤') : '🍗'}</div>`;
                 pg.innerHTML += `<div class="product-card">
       <div class="product-img">${imgEl}</div>
       <div class="product-body">
