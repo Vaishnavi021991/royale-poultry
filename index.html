@@ -850,15 +850,15 @@
                     alt="BBQ Chicken" />
                 <div class="hero-slide-overlay"></div>
             </div>
-            <div class="hero-slide"><img id="slide-img-1" src="chicken_images_website/Crumbed Pieces.png"
+            <div class="hero-slide"><img id="slide-img-1" src="chicken_images_website/Crumbed_Pieces.png"
                     alt="Crumbed Pieces" />
                 <div class="hero-slide-overlay"></div>
             </div>
-            <div class="hero-slide"><img id="slide-img-2" src="chicken_images_website/Marinated Maryland Tandoori.png"
+            <div class="hero-slide"><img id="slide-img-2" src="chicken_images_website/Marinated_Maryland_Tandoori.png"
                     alt="Marinated Maryland" />
                 <div class="hero-slide-overlay"></div>
             </div>
-            <div class="hero-slide"><img id="slide-img-3" src="chicken_images_website/Spare Ribs Sweet Chilli.png"
+            <div class="hero-slide"><img id="slide-img-3" src="chicken_images_website/Spare_Ribs_Sweet_Chilli.png"
                     alt="Spare Ribs Sweet Chilli" />
                 <div class="hero-slide-overlay"></div>
             </div>
@@ -1210,7 +1210,7 @@
             for (let i = 0; i < total; i++) {
                 const d = document.createElement('div');
                 d.className = 'hero-dot' + (i === 0 ? ' active' : '');
-                d.onclick = () => goTo(i);
+                d.onclick = (() => { const n = i; return () => goTo(n); })();
                 dotsEl.appendChild(d);
             }
             function goTo(n) {
@@ -1220,6 +1220,10 @@
             }
             setInterval(() => goTo((cur + 1) % total), 4000);
         }
+
+        // Build products directly on load
+        buildProducts();
+        buildSlideshow();
 
         // Today highlight
         const today = new Date().getDay();
@@ -1264,14 +1268,6 @@
 
         // ── Convert uploaded images to base64 and inject ──
         async function loadUploadedImages() {
-            // Images are passed as File objects via window.uploadedFiles if available
-            // Otherwise fall back to reading from img elements Claude injected
-            const imgElements = document.querySelectorAll('img[data-upload]');
-            imgElements.forEach(el => {
-                const key = el.dataset.upload;
-                IMGS[key] = el.src;
-            });
-            setSlideImages();
             buildProducts();
             buildSlideshow();
         }
