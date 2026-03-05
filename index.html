@@ -1111,13 +1111,15 @@
         // Since artifacts can't load uploaded files directly as src URLs,
         // we use the images passed via window.IMGS injected below
         const IMGS = {
-            img1: "chicken_images_website/preview (1).webp",
-            img2: "chicken_images_website/preview (2).webp",
-            img3: "chicken_images_website/preview (4).webp",
-            img4: "chicken_images_website/preview (6).webp",
-            img5: "chicken_images_website/preview (7).webp",
-            img6: "chicken_images_website/preview (8).webp",
-            img7: "chicken_images_website/preview (9).webp",
+            crumbed: "chicken_images_website/crumbed_chicken.webp",
+            spareribs: "chicken_images_website/sweetchilli_spare_ribs.webp",
+            friedrice: "chicken_images_website/chicken_fried_rice.webp",
+            stirfry: "chicken_images_website/Stir_fry_chicken.webp",
+            potatoes: "chicken_images_website/Baked_potatoes.webp",
+            bbq: "chicken_images_website/Barbeque_chicken.webp",
+            maryland: "chicken_images_website/marinated_maryland.webp",
+            portuguese: "chicken_images_website/portuguese_chicken.png",
+            wedges: "chicken_images_website/potato_wedges.webp",
         };
 
         function setSlideImages() {
@@ -1130,13 +1132,46 @@
 
         // Products data with image keys
         const products = [
-            { name: "Crumbed Chicken", desc: "Golden crispy crumbed chicken pieces", imgKey: "img1", price: 14.90 },
-            { name: "Sweet Chilli Spare Ribs", desc: "Sticky sweet chilli spare ribs — a crowd favourite", imgKey: "img2", price: 15.90 },
-            { name: "Chicken Fried Rice", desc: "Chicken fried rice with mixed vegetables", imgKey: "img3", price: 8.90 },
-            { name: "Stir Fry Chicken", desc: "Flavourful chicken stir fry with fresh vegetables", imgKey: "img4", price: 13.90 },
-            { name: "Baked Potatoes", desc: "Golden crispy baked potatoes — the perfect side", imgKey: "img5", price: 5.90 },
-            { name: "Barbeque Chicken", desc: "Whole barbeque chicken, juicy and golden", imgKey: "img6", price: 22.90 },
-            { name: "Marinated Maryland", desc: "Juicy marinated maryland, roasted to perfection", imgKey: "img7", price: 16.90 },
+            // Crumbed Chicken
+            { name: "1 Crumbed Chicken", desc: "Golden crispy crumbed chicken piece", imgKey: "img1", price: 4.00 },
+            { name: "2 Crumbed Chicken", desc: "Two golden crispy crumbed chicken pieces", imgKey: "img1", price: 7.00 },
+            { name: "3 Crumbed Chicken", desc: "Three golden crispy crumbed chicken pieces", imgKey: "img1", price: 10.00 },
+            { name: "5 Crumbed Chicken", desc: "Five golden crispy crumbed chicken pieces", imgKey: "img1", price: 15.00 },
+            // Six Piece Deals
+            { name: "6pc Wingetts / Spare Ribs / Devil Wings", desc: "6 pieces of wingetts, spare ribs or devil wings", imgKey: "img2", price: 7.00 },
+            // Barbeque Deals
+            { name: "1/4 Barbeque Chicken", desc: "Juicy quarter barbeque chicken", imgKey: "img6", price: 5.00 },
+            { name: "1/2 Barbeque Chicken", desc: "Half barbeque chicken, golden and juicy", imgKey: "img6", price: 8.00 },
+            { name: "Full Barbeque Chicken", desc: "Full barbeque chicken — feeds the family", imgKey: "img6", price: 12.00 },
+            // Portuguese
+            { name: "1/2 Portuguese Chicken", desc: "Half Portuguese style chicken", imgKey: "img6", price: 6.00 },
+            { name: "Full Portuguese Chicken", desc: "Full Portuguese chicken — bold flavour", imgKey: "img6", price: 11.00 },
+            // Maryland
+            { name: "Marinated Maryland", desc: "Juicy marinated maryland, roasted to perfection", imgKey: "img7", price: 5.50 },
+            // Stir Fry Mixed Deals
+            { name: "Potato/Rice + Stir Fry (Sml)", desc: "Small potato or rice with chicken stir fry", imgKey: "img4", price: 6.00 },
+            { name: "Potato/Rice + Stir Fry (Med)", desc: "Medium potato or rice with chicken stir fry", imgKey: "img4", price: 8.50 },
+            { name: "Potato/Rice + Stir Fry (Lrg)", desc: "Large potato or rice with chicken stir fry", imgKey: "img4", price: 10.50 },
+            // Finger Foods
+            { name: "Hot Chips (Reg)", desc: "Golden hot chips — regular size", imgKey: "img5", price: 5.00 },
+            { name: "Hot Chips (Lrg)", desc: "Golden hot chips — large size", imgKey: "img5", price: 7.00 },
+            { name: "Chicken Chippies (Reg)", desc: "Crispy chicken chippies — regular", imgKey: "img1", price: 7.00 },
+            { name: "Chicken Chippies (Lrg)", desc: "Crispy chicken chippies — large", imgKey: "img1", price: 10.00 },
+            { name: "Chicken Popcorn (Reg)", desc: "Bite-sized crispy chicken popcorn — regular", imgKey: "img1", price: 7.00 },
+            { name: "Chicken Popcorn (Lrg)", desc: "Bite-sized crispy chicken popcorn — large", imgKey: "img1", price: 10.00 },
+            { name: "Chicken Croquette 3pc", desc: "3 golden crispy chicken croquettes", imgKey: "img1", price: 7.00 },
+            { name: "Chicken Nuggets 6pc", desc: "6 piece chicken nuggets", imgKey: "img1", price: 6.00 },
+            { name: "Hash Brown 6pc", desc: "6 golden crispy hash browns", imgKey: "img5", price: 8.00 },
+            { name: "Potato Wedges (Reg)", desc: "Seasoned potato wedges — regular size", imgKey: "img5", price: 6.00 },
+            // Fried Rice
+            { name: "Chicken Fried Rice", desc: "Chicken fried rice with mixed vegetables", imgKey: "img3", price: 8.00 },
+            { name: "Chicken Schnitzel", desc: "1 golden crispy chicken schnitzel", imgKey: "schnitzel", price: 2.50 },
+            { name: "Chicken Fingers 3pc", desc: "3 crispy chicken fingers — perfect snack", imgKey: "img1", price: 5.00 },
+            // Drinks
+            { name: "Soft Drink Can", desc: "Coke, Sprite, Fanta and more", imgKey: null, price: 3.00 },
+            { name: "Soft Drink Bottle", desc: "Assorted soft drink bottles", imgKey: null, price: 4.50 },
+            { name: "Sparkling Water", desc: "Refreshing sparkling water", imgKey: null, price: 4.00 },
+            { name: "Spring Water", desc: "Fresh spring water", imgKey: null, price: 3.00 },
         ];
 
         let cart = [];
@@ -1144,10 +1179,10 @@
         function buildProducts() {
             const pg = document.getElementById('products-grid');
             products.forEach((p, i) => {
-                const imgSrc = IMGS[p.imgKey] || '';
+                const imgSrc = p.imgKey && IMGS[p.imgKey] ? IMGS[p.imgKey] : null;
                 const imgEl = imgSrc
                     ? `<img src="${imgSrc}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;"/>`
-                    : `<div style="width:100%;height:100%;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:36px;">🍗</div>`;
+                    : `<div style="width:100%;height:100%;background:#f4f4f4;display:flex;align-items:center;justify-content:center;font-size:48px;">${p.name.toLowerCase().includes('water') ? '💧' : '🥤'}</div>`;
                 pg.innerHTML += `<div class="product-card">
       <div class="product-img">${imgEl}</div>
       <div class="product-body">
