@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royale Poultry — Weekly Content</title>
+    <title>Royale Poultry — Fresh Chicken Maroubra Sydney</title>
+    <meta name="description"
+        content="Royale Poultry at Pacific Square Maroubra. Fresh chicken, hot food, friendly service. Better than supermarkets.">
     <style>
         * {
             box-sizing: border-box;
@@ -14,14 +16,16 @@
 
         body {
             font-family: -apple-system, sans-serif;
-            background: #fff8f0;
+            color: #333;
         }
 
         .header {
             background: #c8360a;
             color: white;
-            padding: 20px;
-            text-align: center;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .header h1 {
@@ -31,274 +35,373 @@
         .header p {
             font-size: 13px;
             opacity: 0.85;
-            margin-top: 5px;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 0 16px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 16px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-        }
-
-        .card h2 {
-            font-size: 16px;
-            margin-bottom: 12px;
-            color: #333;
-        }
-
-        input[type=text] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 15px;
-            outline: none;
-            margin-bottom: 10px;
-        }
-
-        input[type=text]:focus {
-            border-color: #c8360a;
-        }
-
-        .chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        .chip {
-            padding: 6px 14px;
-            background: #fff3e0;
-            border: 1px solid #c8360a;
-            border-radius: 20px;
+        .header-right {
+            text-align: right;
             font-size: 13px;
-            cursor: pointer;
-            color: #c8360a;
         }
 
-        .chip:hover {
-            background: #c8360a;
+        .hero {
+            background: linear-gradient(135deg, #c8360a, #8b1a00);
             color: white;
+            padding: 60px 20px;
+            text-align: center;
         }
 
-        .btn-generate {
-            width: 100%;
-            padding: 14px;
-            background: #c8360a;
-            color: white;
-            border: none;
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
             border-radius: 8px;
             font-size: 16px;
             font-weight: bold;
+            text-decoration: none;
             cursor: pointer;
+            border: none;
         }
 
-        .btn-generate:hover {
-            background: #a82d08;
+        .btn-white {
+            background: white;
+            color: #c8360a;
         }
 
-        .btn-generate:disabled {
-            background: #ccc;
-            cursor: not-allowed;
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
         }
 
-        .spinner-wrap {
-            text-align: center;
-            padding: 30px;
-            display: none;
+        .btn-white:hover {
+            background: #f0f0f0;
         }
 
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f0f0f0;
-            border-top: 4px solid #c8360a;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 10px;
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+        .info-bar {
+            background: #333;
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            font-size: 14px;
         }
 
-        .content-wrap {
-            display: none;
+        .info-bar span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .section {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 16px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+            padding: 50px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .section-title {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .tag {
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            color: white;
-        }
-
-        .tag-google {
-            background: #4285F4;
-        }
-
-        .tag-fb {
-            background: #1877F2;
-        }
-
-        textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-            line-height: 1.6;
-            font-family: inherit;
-            resize: vertical;
-            outline: none;
-        }
-
-        textarea:focus {
-            border-color: #c8360a;
-        }
-
-        .char-count {
-            font-size: 12px;
-            color: #999;
-            margin-top: 4px;
-        }
-
-        .char-count.over {
+        .section h2 {
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 8px;
             color: #c8360a;
-            font-weight: bold;
         }
 
-        .option-tabs {
-            display: flex;
-            gap: 8px;
+        .section-sub {
+            text-align: center;
+            color: #666;
+            margin-bottom: 32px;
+            font-size: 16px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .product-card {
+            background: #fff8f0;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid #f0d0b0;
+        }
+
+        .product-card .emoji {
+            font-size: 40px;
             margin-bottom: 10px;
         }
 
-        .tab {
-            padding: 6px 14px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+        .product-card h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .product-card p {
             font-size: 13px;
-            cursor: pointer;
-            background: white;
+            color: #666;
         }
 
-        .tab.active {
-            background: #1877F2;
-            color: white;
-            border-color: #1877F2;
+        .why {
+            background: #fff8f0;
+            padding: 50px 20px;
         }
 
-        .copy-btn {
-            margin-top: 8px;
-            padding: 7px 14px;
-            background: #f0f0f0;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
+        .why-inner {
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .copy-btn:hover {
-            background: #ddd;
+        .why h2 {
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 8px;
+            color: #c8360a;
         }
 
-        .summary-box {
-            background: #fff3e0;
-            border-left: 4px solid #c8360a;
-            padding: 12px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-bottom: 16px;
+        .why-sub {
+            text-align: center;
+            color: #666;
+            margin-bottom: 32px;
         }
 
-        .approve-card {
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .why-card {
             background: white;
             border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 30px;
+            padding: 24px;
+            text-align: center;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
         }
 
-        .approve-card h2 {
+        .why-card .icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .why-card h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .why-card p {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .hours {
+            padding: 50px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hours h2 {
+            font-size: 28px;
+            color: #c8360a;
             margin-bottom: 8px;
         }
 
-        .approve-card p {
-            font-size: 14px;
+        .hours-sub {
             color: #666;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
         }
 
-        .btn-approve {
+        .hours-table {
             width: 100%;
-            padding: 14px;
-            background: #2e7d32;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            border-collapse: collapse;
+        }
+
+        .hours-table tr {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .hours-table td {
+            padding: 10px 16px;
+            font-size: 15px;
+        }
+
+        .hours-table td:last-child {
+            text-align: right;
             font-weight: bold;
-            cursor: pointer;
+            color: #c8360a;
         }
 
-        .btn-approve:hover {
-            background: #1b5e20;
+        .reviews {
+            background: #fff8f0;
+            padding: 50px 20px;
         }
 
-        .btn-approve:disabled {
-            background: #ccc;
-            cursor: not-allowed;
+        .reviews-inner {
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .result {
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 12px;
+        .reviews h2 {
+            font-size: 28px;
+            text-align: center;
+            color: #c8360a;
+            margin-bottom: 8px;
+        }
+
+        .reviews-sub {
+            text-align: center;
+            color: #666;
+            margin-bottom: 32px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        .stars {
+            color: #f9ab00;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .review-text {
             font-size: 14px;
-            display: none;
-            line-height: 1.8;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            font-style: italic;
         }
 
-        .result.success {
-            background: #e8f5e9;
-            color: #2e7d32;
+        .reviewer {
+            font-size: 13px;
+            font-weight: bold;
+            color: #333;
         }
 
-        .result.error {
-            background: #ffebee;
-            color: #c62828;
+        .contact {
+            padding: 50px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 28px;
+            color: #c8360a;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .contact-sub {
+            text-align: center;
+            color: #666;
+            margin-bottom: 32px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .contact-info {
+            background: #fff8f0;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 16px;
+            font-size: 18px;
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+            font-size: 15px;
+        }
+
+        .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .cta {
+            background: #c8360a;
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .cta p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .footer {
+            background: #222;
+            color: #aaa;
+            padding: 20px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h2 {
+                font-size: 26px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-bar {
+                gap: 16px;
+            }
         }
     </style>
 </head>
@@ -306,193 +409,198 @@
 <body>
 
     <div class="header">
-        <h1>🍗 Royale Poultry — Weekly Content</h1>
-        <p>Generate, review and approve your weekly posts</p>
-    </div>
-
-    <div class="container">
-
-        <!-- Input -->
-        <div class="card">
-            <h2>📝 What's the focus this week?</h2>
-            <input type="text" id="focus" placeholder="e.g. fresh wings, weekend BBQ, winter roast special..." />
-            <div class="chips">
-                <span class="chip" onclick="setFocus('Weekend BBQ special')">🔥 Weekend BBQ</span>
-                <span class="chip" onclick="setFocus('Fresh whole chickens just in')">🐔 Fresh stock in</span>
-                <span class="chip" onclick="setFocus('Hot lunch specials')">🍽️ Lunch specials</span>
-                <span class="chip" onclick="setFocus('Marinated chicken deals')">🌿 Marinated deals</span>
-                <span class="chip" onclick="setFocus('Winter comfort food roast chicken')">❄️ Winter roast</span>
-                <span class="chip" onclick="setFocus('Fresh wings and drumsticks')">🍗 Wings & drums</span>
-            </div>
-            <button class="btn-generate" id="gen-btn" onclick="generate()">✨ Generate This Week's Content</button>
+        <div>
+            <h1>🍗 Royale Poultry</h1>
+            <p>Pacific Square, Maroubra</p>
         </div>
-
-        <!-- Loading -->
-        <div class="spinner-wrap" id="spinner">
-            <div class="spinner"></div>
-            <p>Generating your weekly content...</p>
-        </div>
-
-        <!-- Content -->
-        <div class="content-wrap" id="content-wrap">
-
-            <!-- Week Summary -->
-            <div class="summary-box" id="summary-box"></div>
-
-            <!-- Google Business Post -->
-            <div class="section">
-                <div class="section-header">
-                    <span class="section-title">📍 Google Business Post</span>
-                    <span class="tag tag-google">Auto posts on approve</span>
-                </div>
-                <textarea id="google_post" rows="3" oninput="updateCharCount()"></textarea>
-                <div class="char-count" id="char-count">0 / 300 characters</div>
-                <button class="copy-btn" onclick="copyText('google_post')">📋 Copy</button>
-            </div>
-
-            <!-- Facebook Post -->
-            <div class="section">
-                <div class="section-header">
-                    <span class="section-title">👥 Facebook Post</span>
-                    <span class="tag tag-fb">Auto posts on approve</span>
-                </div>
-                <div class="option-tabs">
-                    <button class="tab active" onclick="switchFB(1, this)">Option 1</button>
-                    <button class="tab" onclick="switchFB(2, this)">Option 2</button>
-                </div>
-                <textarea id="facebook_post" rows="6"></textarea>
-                <button class="copy-btn" onclick="copyText('facebook_post')">📋 Copy</button>
-            </div>
-
-            <!-- Approve -->
-            <div class="approve-card">
-                <h2>✅ Happy with the content?</h2>
-                <p>Edit anything above before approving. Once approved the Google Business post will go live
-                    automatically. Facebook auto posting coming soon.</p>
-                <button class="btn-approve" id="approve-btn" onclick="approve()">
-                    🚀 Approve & Post
-                </button>
-                <div class="result" id="result"></div>
-            </div>
-
+        <div class="header-right">
+            <div>📞 (02) 8964 4879</div>
+            <div>Open Today 7:30am – 5:30pm</div>
         </div>
     </div>
 
-    <script>
-        let fb1 = '', fb2 = '';
+    <div class="hero">
+        <h2>Fresh Chicken Every Day</h2>
+        <p>Maroubra's local poultry specialists — better quality than supermarkets</p>
+        <div class="hero-btns">
+            <a href="https://maps.google.com/?cid=12270329640682949472" class="btn btn-white" target="_blank">📍 Get
+                Directions</a>
+            <a href="tel:0289644879" class="btn btn-outline">📞 Call Us</a>
+            <a href="https://maps.google.com/?cid=12270329640682949472" class="btn btn-outline" target="_blank">⭐ Leave
+                a Review</a>
+        </div>
+    </div>
 
-        function setFocus(text) {
-            document.getElementById('focus').value = text;
-        }
+    <div class="info-bar">
+        <span>📍 Pacific Square, 22/737 Anzac Parade, Maroubra NSW 2035</span>
+        <span>📞 (02) 8964 4879</span>
+        <span>⭐ 4.2 Google Rating</span>
+        <span>🕐 Mon–Sat 7:30am–5:30pm</span>
+    </div>
 
-        async function generate() {
-            const focus = document.getElementById('focus').value.trim();
-            const btn = document.getElementById('gen-btn');
+    <div class="section">
+        <h2>Our Products</h2>
+        <p class="section-sub">Fresh chicken cuts and hot food — ready for you every day</p>
+        <div class="products">
+            <div class="product-card">
+                <div class="emoji">🐔</div>
+                <h3>Whole Chicken</h3>
+                <p>Fresh whole chickens — perfect for roasting</p>
+            </div>
+            <div class="product-card">
+                <div class="emoji">🍗</div>
+                <h3>Breast Fillets</h3>
+                <p>Lean, fresh breast fillets for every meal</p>
+            </div>
+            <div class="product-card">
+                <div class="emoji">🍖</div>
+                <h3>Thigh Fillets</h3>
+                <p>Juicy thigh fillets — great for grilling</p>
+            </div>
+            <div class="product-card">
+                <div class="emoji">🔥</div>
+                <h3>Wings & Drumsticks</h3>
+                <p>Perfect for BBQs and family dinners</p>
+            </div>
+            <div class="product-card">
+                <div class="emoji">🌿</div>
+                <h3>Marinated Cuts</h3>
+                <p>Ready to cook marinated chicken varieties</p>
+            </div>
+            <div class="product-card">
+                <div class="emoji">🍽️</div>
+                <h3>Hot Food</h3>
+                <p>Roast chicken, fried pieces and chips — ready now</p>
+            </div>
+        </div>
+    </div>
 
-            btn.disabled = true;
-            btn.textContent = '⏳ Generating...';
-            document.getElementById('spinner').style.display = 'block';
-            document.getElementById('content-wrap').style.display = 'none';
-            document.getElementById('result').style.display = 'none';
+    <div class="why">
+        <div class="why-inner">
+            <h2>Why Choose Royale Poultry?</h2>
+            <p class="why-sub">We're not a supermarket — and that's exactly the point</p>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="icon">✨</div>
+                    <h3>Fresh Daily</h3>
+                    <p>Fresh chicken in every single day — never frozen, always quality</p>
+                </div>
+                <div class="why-card">
+                    <div class="icon">😊</div>
+                    <h3>Friendly Service</h3>
+                    <p>We know our customers by name — personal service every visit</p>
+                </div>
+                <div class="why-card">
+                    <div class="icon">🏆</div>
+                    <h3>Better Quality</h3>
+                    <p>Premium cuts that supermarkets simply can't match</p>
+                </div>
+                <div class="why-card">
+                    <div class="icon">📍</div>
+                    <h3>Local & Convenient</h3>
+                    <p>Right inside Pacific Square — easy parking, easy access</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            try {
-                const res = await fetch('http://127.0.0.1:8000/generate-weekly', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ focus })
-                });
-                const data = await res.json();
+    <div class="hours">
+        <h2>Opening Hours</h2>
+        <p class="hours-sub">Come visit us at Pacific Square, Maroubra</p>
+        <table class="hours-table">
+            <tr>
+                <td>Monday</td>
+                <td>7:30am – 5:30pm</td>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td>7:30am – 5:30pm</td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td>7:30am – 5:30pm</td>
+            </tr>
+            <tr>
+                <td>Thursday</td>
+                <td>7:30am – 5:30pm</td>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td>7:30am – 5:30pm</td>
+            </tr>
+            <tr>
+                <td>Saturday</td>
+                <td>7:30am – 5:30pm</td>
+            </tr>
+            <tr>
+                <td>Sunday</td>
+                <td>8:00am – 4:30pm</td>
+            </tr>
+        </table>
+    </div>
 
-                if (!data.success) {
-                    alert('Generation failed: ' + data.error);
-                    return;
-                }
+    <div class="reviews">
+        <div class="reviews-inner">
+            <h2>What Our Customers Say</h2>
+            <p class="reviews-sub">Maroubra's favourite chicken shop</p>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Best chicken I've ever had from Royale Poultry!! The staff there is so nice
+                        and professional! 5 stars from me."</p>
+                    <div class="reviewer">— Google Review</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Best chicken ever! Have been buying lunch here over the last few years. The
+                        quality has always been great and the price very competitive."</p>
+                    <div class="reviewer">— Google Review</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"The staff and owner are always so friendly, would recommend. Great quality
+                        fresh chicken every time."</p>
+                    <div class="reviewer">— Google Review</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                const c = data.content;
+    <div class="contact">
+        <h2>Find Us</h2>
+        <p class="contact-sub">We're inside Pacific Square shopping centre, Maroubra</p>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Contact & Location</h3>
+                <div class="contact-row">📍 Pacific Square, 22/737 Anzac Parade, Maroubra NSW 2035</div>
+                <div class="contact-row">📞 <a href="tel:0289644879">(02) 8964 4879</a></div>
+                <div class="contact-row">🕐 Mon–Sat: 7:30am – 5:30pm</div>
+                <div class="contact-row">🕐 Sunday: 8:00am – 4:30pm</div>
+                <div class="contact-row">
+                    <a href="https://maps.google.com/?cid=12270329640682949472" target="_blank"
+                        style="background:#c8360a;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:bold;display:inline-block;margin-top:8px">📍
+                        Get Directions</a>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.8!2d151.2384046!3d-33.9407331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12b3d4605ed627%3A0xaa48f7ccf715da60!2sRoyale%20Poultry%20-%20Pacific%20Square%2C%20Maroubra!5e0!3m2!1sen!2sau!4v1"
+                    allowfullscreen loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
 
-                // Google post
-                document.getElementById('google_post').value = c.google_post.content;
-                updateCharCount();
+    <div class="cta">
+        <h2>Love Our Chicken?</h2>
+        <p>Leave us a Google review — it means the world to a local business like ours!</p>
+        <a href="https://maps.google.com/?cid=12270329640682949472" class="btn btn-white" target="_blank">⭐ Leave a
+            Review on Google</a>
+    </div>
 
-                // Facebook posts
-                fb1 = c.facebook_post.option_1;
-                fb2 = c.facebook_post.option_2;
-                document.getElementById('facebook_post').value = fb1;
+    <div class="footer">
+        <p>© 2026 Royale Poultry — Pacific Square, 22/737 Anzac Parade, Maroubra NSW 2035 | (02) 8964 4879</p>
+    </div>
 
-                // Reset tabs
-                document.querySelectorAll('.tab').forEach((t, i) => {
-                    t.className = 'tab' + (i === 0 ? ' active' : '');
-                });
-
-                // Summary
-                document.getElementById('summary-box').textContent = '💡 ' + c.week_summary;
-
-                document.getElementById('content-wrap').style.display = 'block';
-                document.getElementById('content-wrap').scrollIntoView({ behavior: 'smooth' });
-
-            } catch (e) {
-                alert('⚠️ Could not reach the server. Make sure uvicorn is running.');
-            }
-
-            document.getElementById('spinner').style.display = 'none';
-            btn.disabled = false;
-            btn.textContent = '✨ Generate This Week\'s Content';
-        }
-
-        function switchFB(num, el) {
-            document.getElementById('facebook_post').value = num === 1 ? fb1 : fb2;
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
-        }
-
-        function updateCharCount() {
-            const len = document.getElementById('google_post').value.length;
-            const el = document.getElementById('char-count');
-            el.textContent = `${len} / 300 characters`;
-            el.className = 'char-count' + (len > 300 ? ' over' : '');
-        }
-
-        async function approve() {
-            const btn = document.getElementById('approve-btn');
-            btn.disabled = true;
-            btn.textContent = '⏳ Posting...';
-
-            try {
-                const res = await fetch('http://127.0.0.1:8000/approve-and-post', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        google_post: document.getElementById('google_post').value,
-                        facebook_post: document.getElementById('facebook_post').value
-                    })
-                });
-                const data = await res.json();
-
-                const result = document.getElementById('result');
-                result.style.display = 'block';
-                result.className = 'result success';
-                result.innerHTML = `
-        ${data.google_post}<br>
-        ${data.facebook_post}<br>
-        ${data.saved}
-      `;
-            } catch (e) {
-                const result = document.getElementById('result');
-                result.style.display = 'block';
-                result.className = 'result error';
-                result.textContent = '❌ Something went wrong. Check the server is running.';
-            }
-
-            btn.disabled = false;
-            btn.textContent = '🚀 Approve & Post';
-        }
-
-        function copyText(id) {
-            navigator.clipboard.writeText(document.getElementById(id).value);
-            event.target.textContent = '✅ Copied!';
-            setTimeout(() => event.target.textContent = '📋 Copy', 2000);
-        }
-    </script>
 </body>
 
 </html>
