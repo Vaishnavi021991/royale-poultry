@@ -1239,6 +1239,10 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        emailjs.init('GM5acSQBMyvREwesm');
+    </script>
     <script>
         // ── Load uploaded images via fetch from the page's own img tags ──
         // We receive the images as base64 by reading the uploaded files
@@ -1474,13 +1478,37 @@
             const party = document.getElementById('party-size').value;
             if (!name || !phone || !time) { alert('Please fill in your name, phone and pickup time!'); return; }
             if (!cart.length) { alert('Please add at least one item to your order!'); return; }
+
             const orderId = 'RP' + Date.now().toString().slice(-6);
             const tot = cart.reduce((s, i) => s + i.price, 0);
-            document.getElementById('order-id-display').innerHTML =
-                `<strong>Order #${orderId}</strong><br/>👤 ${name} | 📞 ${phone}<br/>⏰ Pickup: ${time} | 👥 ${party}<br/>🍗 ${cart.map(i => i.name).join(', ')}<br/><strong>💰 Total: $${tot.toFixed(2)} — Pay in store</strong>${notes ? `<br/>📝 ${notes}` : ''}`;
-            document.getElementById('success-overlay').style.display = 'flex';
-            cart = []; updateCart();
-            ['cust-name', 'cust-phone', 'pickup-time', 'notes'].forEach(id => document.getElementById(id).value = '');
+            const itemsList = cart.map(i => `${i.name}  —  $${i.price.toFixed(2)}`).join('\n');
+
+            const btn = document.querySelector('.submit-btn');
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+
+            emailjs.send('service_5ur6y6n', 'template_xwki0bv', {
+                customer_name: name,
+                customer_phone: phone,
+                pickup_time: time,
+                party_size: party,
+                order_items: itemsList,
+                order_total: '$' + tot.toFixed(2),
+                notes: notes || 'None',
+                order_id: orderId
+            }).then(() => {
+                document.getElementById('order-id-display').innerHTML =
+                    `<strong>Order #${orderId}</strong><br/>👤 ${name} | 📞 ${phone}<br/>⏰ Pickup: ${time} | 👥 ${party}<br/>🍗 ${cart.map(i => i.name).join(', ')}<br/><strong>💰 Total: $${tot.toFixed(2)} — Pay in store</strong>${notes ? `<br/>📝 ${notes}` : ''}`;
+                document.getElementById('success-overlay').style.display = 'flex';
+                cart = []; updateCart();
+                ['cust-name', 'cust-phone', 'pickup-time', 'notes'].forEach(id => document.getElementById(id).value = '');
+            }).catch((err) => {
+                alert('Sorry, there was a problem sending your order. Please call us on (02) 8964 4879.');
+                console.error('EmailJS error:', err);
+            }).finally(() => {
+                btn.disabled = false;
+                btn.textContent = '🍗 Place Order — Pay In Store';
+            });
         }
         function closeSuccess() { document.getElementById('success-overlay').style.display = 'none'; }
 
