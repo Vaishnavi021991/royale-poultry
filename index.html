@@ -1140,6 +1140,14 @@
             img5: "chicken_images_website/Chips.png",
             img6: "chicken_images_website/BBQ_Chicken.png",
             img7: "chicken_images_website/Marinated_Maryland_Tandoori.png",
+            portuguese: "chicken_images_website/Portugese_Chicken.png",
+            chippies: "chicken_images_website/Chicken_Chippies.png",
+            popcorn: "chicken_images_website/Popcorn_Chicken.png",
+            croquette: "chicken_images_website/Chicken_Croquette.png",
+            nuggets: "chicken_images_website/Chicken_Nuggets.png",
+            hashbrown: "chicken_images_website/hash_brown.png",
+            wedges: "chicken_images_website/Potato_Wedges.png",
+            fingers: "chicken_images_website/Tenderloin_Chicken_Fingers.png",
         };
 
         function setSlideImages() {
@@ -1175,7 +1183,7 @@
             },
             // Portuguese
             {
-                name: "Portuguese Chicken", desc: "Bold Portuguese style chicken", imgKey: "img6",
+                name: "Portuguese Chicken", desc: "Bold Portuguese style chicken", imgKey: "portuguese",
                 options: [
                     { label: "1/2 chicken", price: 6.00 },
                     { label: "Full chicken", price: 11.00 },
@@ -1201,32 +1209,37 @@
                 ]
             },
             {
-                name: "Chicken Chippies", desc: "Crispy chicken chippies", imgKey: "img1",
+                name: "Chicken Chippies", desc: "Crispy chicken chippies", imgKey: "chippies",
                 options: [
                     { label: "Regular", price: 7.00 },
                     { label: "Large", price: 10.00 },
                 ]
             },
             {
-                name: "Chicken Popcorn", desc: "Bite-sized crispy chicken popcorn", imgKey: "img1",
+                name: "Chicken Popcorn", desc: "Bite-sized crispy chicken popcorn", imgKey: "popcorn",
                 options: [
                     { label: "Regular", price: 7.00 },
                     { label: "Large", price: 10.00 },
                 ]
             },
-            { name: "Chicken Croquette 3pc", desc: "3 golden crispy chicken croquettes", imgKey: "img1", price: 7.00 },
-            { name: "Chicken Nuggets 6pc", desc: "6 piece chicken nuggets", imgKey: "img1", price: 6.00 },
-            { name: "Hash Brown 6pc", desc: "6 golden crispy hash browns", imgKey: "img5", price: 8.00 },
-            { name: "Potato Wedges", desc: "Seasoned potato wedges", imgKey: "img5", price: 6.00 },
+            { name: "Chicken Croquette 3pc", desc: "3 golden crispy chicken croquettes", imgKey: "croquette", price: 7.00 },
+            { name: "Chicken Nuggets 6pc", desc: "6 piece chicken nuggets", imgKey: "nuggets", price: 6.00 },
+            { name: "Hash Brown 6pc", desc: "6 golden crispy hash browns", imgKey: "hashbrown", price: 8.00 },
+            { name: "Potato Wedges", desc: "Seasoned potato wedges", imgKey: "wedges", price: 6.00 },
             // Fried Rice
             { name: "Chicken Fried Rice", desc: "Chicken fried rice with mixed vegetables", imgKey: "img3", price: 8.00 },
             { name: "Chicken Schnitzel", desc: "1 golden crispy chicken schnitzel", imgKey: "schnitzel", price: 2.50 },
-            { name: "Chicken Fingers 3pc", desc: "3 crispy chicken fingers — perfect snack", imgKey: "img1", price: 5.00 },
+            { name: "Chicken Fingers 3pc", desc: "3 crispy chicken fingers — perfect snack", imgKey: "fingers", price: 5.00 },
             // Drinks
-            { name: "Soft Drink Can", desc: "Coke, Sprite, Fanta and more", imgKey: null, price: 3.00 },
-            { name: "Soft Drink Bottle", desc: "Assorted soft drink bottles", imgKey: null, price: 4.50 },
-            { name: "Sparkling Water", desc: "Refreshing sparkling water", imgKey: null, price: 4.00 },
-            { name: "Spring Water", desc: "Fresh spring water", imgKey: null, price: 3.00 },
+            {
+                name: "Drinks", desc: "Cold drinks to go with your meal", imgKey: null,
+                options: [
+                    { label: "Soft Drink Can", price: 3.00 },
+                    { label: "Soft Drink Bottle", price: 4.50 },
+                    { label: "Sparkling Water", price: 4.00 },
+                    { label: "Spring Water", price: 3.00 },
+                ]
+            },
         ];
 
         let cart = [];
