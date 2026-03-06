@@ -364,6 +364,23 @@
             background: var(--red-dark);
         }
 
+        .variant-select {
+            width: 100%;
+            margin: 8px 0 4px;
+            padding: 6px 8px;
+            border: 1px solid var(--cream-mid);
+            border-radius: 5px;
+            font-size: 12px;
+            color: var(--text);
+            background: #fff;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .variant-select:focus {
+            border-color: var(--red);
+        }
+
         .why-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -1136,36 +1153,71 @@
         // Products data with image keys
         const products = [
             // Crumbed Chicken
-            { name: "1 Crumbed Chicken", desc: "Golden crispy crumbed chicken piece", imgKey: "img1", price: 4.00 },
-            { name: "2 Crumbed Chicken", desc: "Two golden crispy crumbed chicken pieces", imgKey: "img1", price: 7.00 },
-            { name: "3 Crumbed Chicken", desc: "Three golden crispy crumbed chicken pieces", imgKey: "img1", price: 10.00 },
-            { name: "5 Crumbed Chicken", desc: "Five golden crispy crumbed chicken pieces", imgKey: "img1", price: 15.00 },
+            {
+                name: "Crumbed Chicken", desc: "Golden crispy crumbed chicken pieces", imgKey: "img1",
+                options: [
+                    { label: "1 piece", price: 4.00 },
+                    { label: "2 pieces", price: 7.00 },
+                    { label: "3 pieces", price: 10.00 },
+                    { label: "5 pieces", price: 15.00 },
+                ]
+            },
             // Six Piece Deals
             { name: "6pc Wingetts / Spare Ribs / Devil Wings", desc: "6 pieces of wingetts, spare ribs or devil wings", imgKey: "img2", price: 7.00 },
-            // Barbeque Deals
-            { name: "1/4 Barbeque Chicken", desc: "Juicy quarter barbeque chicken", imgKey: "img6", price: 5.00 },
-            { name: "1/2 Barbeque Chicken", desc: "Half barbeque chicken, golden and juicy", imgKey: "img6", price: 8.00 },
-            { name: "Full Barbeque Chicken", desc: "Full barbeque chicken — feeds the family", imgKey: "img6", price: 12.00 },
+            // Barbeque
+            {
+                name: "Barbeque Chicken", desc: "Juicy barbeque chicken, golden and smoky", imgKey: "img6",
+                options: [
+                    { label: "1/4 chicken", price: 5.00 },
+                    { label: "1/2 chicken", price: 8.00 },
+                    { label: "Full chicken", price: 12.00 },
+                ]
+            },
             // Portuguese
-            { name: "1/2 Portuguese Chicken", desc: "Half Portuguese style chicken", imgKey: "img6", price: 6.00 },
-            { name: "Full Portuguese Chicken", desc: "Full Portuguese chicken — bold flavour", imgKey: "img6", price: 11.00 },
+            {
+                name: "Portuguese Chicken", desc: "Bold Portuguese style chicken", imgKey: "img6",
+                options: [
+                    { label: "1/2 chicken", price: 6.00 },
+                    { label: "Full chicken", price: 11.00 },
+                ]
+            },
             // Maryland
             { name: "Marinated Maryland", desc: "Juicy marinated maryland, roasted to perfection", imgKey: "img7", price: 5.50 },
-            // Stir Fry Mixed Deals
-            { name: "Potato/Rice + Stir Fry (Sml)", desc: "Small potato or rice with chicken stir fry", imgKey: "img4", price: 6.00 },
-            { name: "Potato/Rice + Stir Fry (Med)", desc: "Medium potato or rice with chicken stir fry", imgKey: "img4", price: 8.50 },
-            { name: "Potato/Rice + Stir Fry (Lrg)", desc: "Large potato or rice with chicken stir fry", imgKey: "img4", price: 10.50 },
+            // Stir Fry
+            {
+                name: "Potato/Rice + Stir Fry", desc: "Potato or rice with chicken stir fry", imgKey: "img4",
+                options: [
+                    { label: "Small", price: 6.00 },
+                    { label: "Medium", price: 8.50 },
+                    { label: "Large", price: 10.50 },
+                ]
+            },
             // Finger Foods
-            { name: "Hot Chips (Reg)", desc: "Golden hot chips — regular size", imgKey: "img5", price: 5.00 },
-            { name: "Hot Chips (Lrg)", desc: "Golden hot chips — large size", imgKey: "img5", price: 7.00 },
-            { name: "Chicken Chippies (Reg)", desc: "Crispy chicken chippies — regular", imgKey: "img1", price: 7.00 },
-            { name: "Chicken Chippies (Lrg)", desc: "Crispy chicken chippies — large", imgKey: "img1", price: 10.00 },
-            { name: "Chicken Popcorn (Reg)", desc: "Bite-sized crispy chicken popcorn — regular", imgKey: "img1", price: 7.00 },
-            { name: "Chicken Popcorn (Lrg)", desc: "Bite-sized crispy chicken popcorn — large", imgKey: "img1", price: 10.00 },
+            {
+                name: "Hot Chips", desc: "Golden hot chips", imgKey: "img5",
+                options: [
+                    { label: "Regular", price: 5.00 },
+                    { label: "Large", price: 7.00 },
+                ]
+            },
+            {
+                name: "Chicken Chippies", desc: "Crispy chicken chippies", imgKey: "img1",
+                options: [
+                    { label: "Regular", price: 7.00 },
+                    { label: "Large", price: 10.00 },
+                ]
+            },
+            {
+                name: "Chicken Popcorn", desc: "Bite-sized crispy chicken popcorn", imgKey: "img1",
+                options: [
+                    { label: "Regular", price: 7.00 },
+                    { label: "Large", price: 10.00 },
+                ]
+            },
             { name: "Chicken Croquette 3pc", desc: "3 golden crispy chicken croquettes", imgKey: "img1", price: 7.00 },
             { name: "Chicken Nuggets 6pc", desc: "6 piece chicken nuggets", imgKey: "img1", price: 6.00 },
             { name: "Hash Brown 6pc", desc: "6 golden crispy hash browns", imgKey: "img5", price: 8.00 },
-            { name: "Potato Wedges (Reg)", desc: "Seasoned potato wedges — regular size", imgKey: "img5", price: 6.00 },
+            { name: "Potato Wedges", desc: "Seasoned potato wedges", imgKey: "img5", price: 6.00 },
             // Fried Rice
             { name: "Chicken Fried Rice", desc: "Chicken fried rice with mixed vegetables", imgKey: "img3", price: 8.00 },
             { name: "Chicken Schnitzel", desc: "1 golden crispy chicken schnitzel", imgKey: "schnitzel", price: 2.50 },
@@ -1186,12 +1238,22 @@
                 const imgEl = imgSrc
                     ? `<img src="${imgSrc}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;"/>`
                     : `<div style="width:100%;height:100%;background:#f4f4f4;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:48px;">${p.imgKey === null ? (p.name.toLowerCase().includes('water') ? '💧' : '🥤') : '🍗'}</div>`;
+                let variantHtml = '';
+                let initialPrice;
+                if (p.options) {
+                    initialPrice = p.options[0].price;
+                    const opts = p.options.map(o => `<option value="${o.price}">${o.label} — $${o.price.toFixed(2)}</option>`).join('');
+                    variantHtml = `<select id="sel-${i}" class="variant-select" onchange="document.getElementById('price-${i}').textContent='$'+parseFloat(this.value).toFixed(2)">${opts}</select>`;
+                } else {
+                    initialPrice = p.price;
+                }
                 pg.innerHTML += `<div class="product-card">
       <div class="product-img">${imgEl}</div>
       <div class="product-body">
         <h3>${p.name}</h3><p>${p.desc}</p>
+        ${variantHtml}
         <div class="product-footer">
-          <span class="product-price">$${p.price.toFixed(2)}</span>
+          <span class="product-price" id="price-${i}">$${initialPrice.toFixed(2)}</span>
           <button class="add-btn" onclick="addToCart(${i})">+ Add</button>
         </div>
       </div>
@@ -1232,7 +1294,17 @@
             }
         });
 
-        function addToCart(i) { cart.push({ ...products[i] }); updateCart(); }
+        function addToCart(i) {
+            const p = products[i];
+            if (p.options) {
+                const sel = document.getElementById('sel-' + i);
+                const opt = p.options[sel.selectedIndex];
+                cart.push({ name: p.name + ' (' + opt.label + ')', price: opt.price });
+            } else {
+                cart.push({ ...p });
+            }
+            updateCart();
+        }
         function removeFromCart(i) { cart.splice(i, 1); updateCart(); }
         function updateCart() {
             const tot = cart.reduce((s, i) => s + i.price, 0);
@@ -1264,13 +1336,6 @@
         }
         function closeSuccess() { document.getElementById('success-overlay').style.display = 'none'; }
 
-        // ── Convert uploaded images to base64 and inject ──
-        async function loadUploadedImages() {
-            buildProducts();
-            buildSlideshow();
-        }
-
-        loadUploadedImages();
     </script>
 
     <!-- end -->
